@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import webdevproject.database.model.UserEntity;
 import webdevproject.database.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -25,15 +24,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/users")
-    public String listUsers() {
-        var users = userRepository.findAll();
-        if (users.isEmpty()) {
-            return "There are no movies at the moment";
-        }
-        return users.stream()
-                .map(UserEntity::toString)
-                .collect(Collectors.joining("\n"));
-    }
+    List<UserEntity> findAll() {return userRepository.findAll();}
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
@@ -44,7 +35,7 @@ public class UserController {
     @GetMapping("/users/{name}")
     public String findUserByName(@PathVariable String name) {
         var user = userRepository.findUsersEntityByName(name);
-        if(user.isEmpty()) {
+        if (user.isEmpty()) {
             return "User not found";
         }
         return user.stream()

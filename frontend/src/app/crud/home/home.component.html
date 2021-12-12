@@ -1,0 +1,25 @@
+<div>
+  <h1>Users</h1>
+  <button type="button" [routerLink]="['/crud/create/']">Create new user</button>
+  <table>
+    <thead>
+    <tr>
+      <th>User name</th>
+      <th>User pw</th>
+      <th>Privileged</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.name}}</td>
+      <td>{{user.pw}}</td>
+      <td>{{user.privileged}}</td>
+      <td>
+        <button type="button" [routerLink]="['/crud/update/', user.name]">Update</button>
+        <button type="button" (click)="deleteUser(user.name)">Remove</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

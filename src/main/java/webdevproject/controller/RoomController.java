@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import webdevproject.database.model.MovieEntity;
 import webdevproject.database.model.RoomEntity;
 import webdevproject.database.repository.RoomRepository;
 
@@ -26,7 +25,7 @@ public class RoomController {
     @GetMapping("/rooms")
     public String listRoom() {
         var rooms = roomRepository.findAll();
-        if(rooms.isEmpty()) {
+        if (rooms.isEmpty()) {
             return "There are no rooms at the moment";
         }
         return rooms.stream()
@@ -36,12 +35,14 @@ public class RoomController {
 
     @PostMapping("/rooms")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createRoom(@RequestBody RoomEntity roomEntity) {roomRepository.save(roomEntity);}
+    public void createRoom(@RequestBody RoomEntity roomEntity) {
+        roomRepository.save(roomEntity);
+    }
 
     @GetMapping("/rooms/{name}")
     public String findRoomByName(@PathVariable String name) {
         var room = roomRepository.findRoomsEntityByName(name);
-        if(room.isEmpty()) {
+        if (room.isEmpty()) {
             return "Room not found";
         }
         return room.stream()

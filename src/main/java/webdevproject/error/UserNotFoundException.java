@@ -1,6 +1,8 @@
 package webdevproject.error;
 
-public class UserNotFoundException extends RuntimeException{
+public class UserNotFoundException extends RuntimeException {
 
-    public UserNotFoundException(String name) {super("User name not found :" + name);}
+    public UserNotFoundException(String name) {
+        super("User name not found :" + name);
+    }
 }

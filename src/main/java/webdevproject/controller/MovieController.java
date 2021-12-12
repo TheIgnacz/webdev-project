@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import webdevproject.database.model.MovieEntity;
-import webdevproject.database.model.UserEntity;
 import webdevproject.database.repository.MovieRepository;
 
 import java.util.Optional;
@@ -26,7 +25,7 @@ public class MovieController {
     @GetMapping("/movies")
     public String listMovies() {
         var movies = movieRepository.findAll();
-        if(movies.isEmpty()) {
+        if (movies.isEmpty()) {
             return "There are no movies at the moment";
         }
         return movies.stream()
@@ -36,12 +35,14 @@ public class MovieController {
 
     @PostMapping("/movies")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createMovie(@RequestBody MovieEntity movieEntity) {movieRepository.save(movieEntity);}
+    public void createMovie(@RequestBody MovieEntity movieEntity) {
+        movieRepository.save(movieEntity);
+    }
 
     @GetMapping("/movies/{name}")
     public String findMovieByName(@PathVariable String name) {
         var movie = movieRepository.findMoviesEntityByName(name);
-        if(movie.isEmpty()) {
+        if (movie.isEmpty()) {
             return "Movie not found";
         }
         return movie.stream()

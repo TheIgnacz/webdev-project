@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +12,6 @@ import webdevproject.WebdevProjectApplication;
 import webdevproject.database.model.MovieEntity;
 import webdevproject.database.model.RoomEntity;
 import webdevproject.database.model.ScreeningEntity;
-import webdevproject.database.model.UserEntity;
 import webdevproject.database.repository.MovieRepository;
 import webdevproject.database.repository.RoomRepository;
 import webdevproject.database.repository.ScreeningRepository;
@@ -55,8 +52,8 @@ public class ScreeningController {
     @PostMapping("/screenings")
     @ResponseStatus(HttpStatus.CREATED)
     public String createScreening(@RequestParam String movieName,
-                                @RequestParam String roomName,
-                                @RequestParam String date) throws ParseException {
+                                  @RequestParam String roomName,
+                                  @RequestParam String date) throws ParseException {
         Date parsed = WebdevProjectApplication.simpleDateFormat.parse(date);
         Optional<MovieEntity> optionalMovie = movieRepository.findMoviesEntityByName(movieName);
         Optional<RoomEntity> optionalRoom = roomRepository.findRoomsEntityByName(roomName);

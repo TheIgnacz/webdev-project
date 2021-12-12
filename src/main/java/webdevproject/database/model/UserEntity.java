@@ -44,7 +44,9 @@ public class UserEntity {
         return privileged;
     }
 
-    public boolean getPrivileged() {return privileged;}
+    public boolean getPrivileged() {
+        return privileged;
+    }
 
     public void setPrivileged(boolean privileged) {
         this.privileged = privileged;

@@ -7,10 +7,10 @@ import java.text.SimpleDateFormat;
 
 @SpringBootApplication
 public class WebdevProjectApplication {
-	public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-	public static void main(String[] args) {
-		SpringApplication.run(WebdevProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WebdevProjectApplication.class, args);
+    }
 
 }
